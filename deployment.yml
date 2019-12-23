@@ -1,0 +1,23 @@
+#Defining the deployment for nginx pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-first-deploy
+  labels:
+    app: my-app
+spec:
+  template:
+    metadata:
+       name: my-first-pod
+       labels:
+         name: my-pod
+    spec:
+      containers:
+        -  name: my-first-container
+           image: nginx
+           ports:
+           - containerPort: 80
+  replicas: 3
+  selector:
+    matchLabels:
+      name: my-pod
